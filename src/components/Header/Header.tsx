@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 
 import { HeaderContainer } from './Header.styles';
 
@@ -8,7 +9,7 @@ const Header = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const date = useMemo(() => {
-    return `${currentDate.getDay()}.${currentDate.getMonth() + 1}.${currentDate.getFullYear()}`;
+    return `${currentDate.getDate()}.${currentDate.getMonth() + 1}.${currentDate.getFullYear()}`;
   }, [currentDate]);
 
   useEffect(() => {
@@ -18,7 +19,9 @@ const Header = () => {
 
   return (
     <HeaderContainer>
-      <img className="logo" src={pokeball} alt="logo" />
+      <Link to="/">
+        <img className="logo" src={pokeball} alt="logo" />
+      </Link>
       <div className="date-container">
         <p className="clock">Date: {date}</p>
         <p className="clock">Time: {currentDate.toLocaleTimeString()}</p>

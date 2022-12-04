@@ -1,8 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 
-import Header from './components/Header';
 import MainPage from './pages/MainPage';
 import PokemonPage from './pages/PokemonPage';
+
+import Header from './components/Header';
 import Footer from './components/Footer';
 
 const App = () => {

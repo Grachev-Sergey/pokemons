@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
-import pokemonApi from '../../api/pokemonApi';
-import type { QueryType, ResultType } from '../../utils/type';
 import { CatalogContainer } from './Catalog.styles';
+
 import CatalogItem from './CatalogItem';
 
-const limit = 10;
+import pokemonApi from '../../api/pokemonApi';
+import type { ResultType } from '../../utils/type';
+
+const limit = 24;
 
 const Catalog = () => {
   const [pokemonsArr, setPokemonsArr] = useState<ResultType[]>();
@@ -16,17 +18,13 @@ const Catalog = () => {
   const pageCount = Math.ceil(count / limit);
 
   const handlePageClick = (event: { selected: number }) => {
-    const newOffset = (event.selected * limit) % count;
+    const newOffset = event.selected * limit;
     setOffset(newOffset);
   };
 
   useEffect(() => {
     (async () => {
-      const query: QueryType = {
-        offset,
-        limit,
-      };
-      const pokemons = await pokemonApi.getAllPokemons(query);
+      const pokemons = await pokemonApi.getAllPokemons({ offset, limit });
       setPokemonsArr(pokemons.data.results);
       setCount(pokemons.data.count);
     })();
@@ -45,11 +43,11 @@ const Catalog = () => {
         <ReactPaginate
           className="pagination"
           breakLabel="..."
-          nextLabel="next >"
+          nextLabel="   >"
           onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
+          pageRangeDisplayed={3}
           pageCount={pageCount}
-          previousLabel="< previous"
+          previousLabel="<   "
         />
       </div>
     </CatalogContainer>

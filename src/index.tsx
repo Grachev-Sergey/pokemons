@@ -1,13 +1,14 @@
-// start
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+
 import { ThemeProvider } from 'styled-components';
-import reportWebVitals from './reportWebVitals';
+
 import App from './App';
 
 import { GlobalStyles } from './utils/GlobalStyles';
 import { baseTheme } from './utils/theme';
+import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

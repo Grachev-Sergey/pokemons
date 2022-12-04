@@ -1,4 +1,5 @@
 import customAxios from '.';
+
 import type { IRoot, PokemonsType, QueryType } from '../utils/type';
 
 const getAllPokemons = (query: QueryType) => {

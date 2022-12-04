@@ -12,13 +12,16 @@ export const HeaderContainer = styled.section`
   }
 
   .date-container {
-    min-width: 270px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
   }
 
   .clock {
     font-size: 17px;
     color: ${({ theme }) => theme.colors.darkGray};
+  }
+
+  @media only screen and (max-width: 650px) {
+    padding: 25px 50px;
   }
 `;

@@ -7,4 +7,13 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     font-family: poppins;
   }
+
+  li {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
 `;

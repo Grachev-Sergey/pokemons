@@ -1,4 +1,5 @@
-import Catalog from '../../components/Catalog/Catalog';
+import Catalog from '../../components/Catalog';
+
 import { MainPageContainer } from './MainPage.styles';
 
 const MainPage = () => {

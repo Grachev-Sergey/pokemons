@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import { CatalogItemContainer } from './CatalogItem.styles';
+
 import type { IRoot, ResultType } from '../../../utils/type';
 import pokemonApi from '../../../api/pokemonApi';
 
@@ -9,6 +12,7 @@ type PropsType = {
 
 const CatalogItem: React.FC<PropsType> = ({ pokemon }) => {
   const [pocemonInfo, setPocemonInfo] = useState<IRoot>();
+  const name = `${pokemon?.name.charAt(0).toUpperCase()}${pokemon?.name.slice(1)}`;
   useEffect(() => {
     (async () => {
       const pokemonData = await pokemonApi.getOnePokemon(pokemon.url);
@@ -16,13 +20,12 @@ const CatalogItem: React.FC<PropsType> = ({ pokemon }) => {
     })();
   }, [pokemon.url]);
 
-  // eslint-disable-next-line no-console
-  console.log(pocemonInfo?.sprites?.front_default);
-
   return (
     <CatalogItemContainer>
-      <img src={pocemonInfo?.sprites?.front_default} alt="" />
-      <div>{pokemon.name}</div>
+      <Link to={`/${pocemonInfo?.id}`}>
+        <img src={pocemonInfo?.sprites?.front_default} alt="pokemon" />
+        <div className="name">{name}</div>
+      </Link>
     </CatalogItemContainer>
   );
 };

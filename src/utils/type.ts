@@ -109,7 +109,7 @@ export interface ISprites {
 export interface IOther {
   dream_world: IDreamWorld;
   home: IHome;
-  official_artwork: IOfficialArtwork;
+  'official-artwork': IOfficialArtwork;
 }
 
 export interface IDreamWorld {
