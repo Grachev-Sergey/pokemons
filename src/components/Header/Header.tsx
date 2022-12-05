@@ -15,7 +15,7 @@ const Header = () => {
   useEffect(() => {
     const timer = setInterval(() => setCurrentDate(new Date()), 1000);
     return () => clearInterval(timer);
-  });
+  }, []);
 
   return (
     <HeaderContainer>

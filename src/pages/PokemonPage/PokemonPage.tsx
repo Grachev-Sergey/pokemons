@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { PokemonPageContainer, PokemonCardContainer } from './PokemonPage.styles';
 
@@ -11,7 +12,7 @@ const PokemonPage = () => {
   const [pokemon, setPokemon] = useState<IRoot>();
   const { id } = useParams();
 
-  const name = `${pokemon?.name.charAt(0).toUpperCase()}${pokemon?.name.slice(1)}`;
+  const name = `${pokemon?.name[0].toUpperCase()}${pokemon?.name.slice(1)}`;
   const baseExperience = pokemon?.base_experience;
   const height = pokemon?.height;
   const weight = pokemon?.weight;
@@ -22,8 +23,13 @@ const PokemonPage = () => {
 
   useEffect(() => {
     (async () => {
-      const pokemonInfo = await pokemonApi.getOnePokemon(`${baseUrl}/${id}`);
-      setPokemon(pokemonInfo.data);
+      try {
+        const pokemonInfo = await pokemonApi.getOnePokemon(`${baseUrl}/${id}`);
+        setPokemon(pokemonInfo.data);
+      } catch (err) {
+        const error = err as Error;
+        return toast.error(error.message);
+      }
     })();
   }, [id]);
 

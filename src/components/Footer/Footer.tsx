@@ -1,17 +1,13 @@
-import { useState } from 'react';
+import useWindowInnerWidth from '../../utils/useWindowInnerWidth';
 
 import { FooterContainer } from './Footer.styles';
 
 const Footer = () => {
-  const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
-  const changeWindowWidth = () => {
-    setWindowInnerWidth(document.documentElement.clientWidth);
-  };
-  window.onresize = changeWindowWidth;
+  const width = useWindowInnerWidth(window.innerWidth);
 
   return (
     <FooterContainer>
-      <p className="screen-width">{windowInnerWidth}</p>
+      <p className="screen-width">{width}</p>
     </FooterContainer>
   );
 };

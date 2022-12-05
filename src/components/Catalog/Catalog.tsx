@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
+import { toast } from 'react-toastify';
 
 import { CatalogContainer } from './Catalog.styles';
 
@@ -24,9 +25,14 @@ const Catalog = () => {
 
   useEffect(() => {
     (async () => {
-      const pokemons = await pokemonApi.getAllPokemons({ offset, limit });
-      setPokemonsArr(pokemons.data.results);
-      setCount(pokemons.data.count);
+      try {
+        const pokemons = await pokemonApi.getAllPokemons({ offset, limit });
+        setPokemonsArr(pokemons.data.results);
+        setCount(pokemons.data.count);
+      } catch (err) {
+        const error = err as Error;
+        return toast.error(error.message);
+      }
     })();
   }, [offset]);
 

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const PokemonPageContainer = styled.section`
-  min-height: calc(100vh - 183px - 15vh);
   padding: 0 30px;
 `;
 
@@ -9,7 +8,7 @@ export const PokemonCardContainer = styled.section`
   max-width: 900px;
   display: flex;
   gap: 30px;
-  margin: 15vh auto;
+  margin: 10vh auto;
   background-color: ${({ theme }) => theme.colors.light};
   border-radius: 16px;
   padding: 0 20px;

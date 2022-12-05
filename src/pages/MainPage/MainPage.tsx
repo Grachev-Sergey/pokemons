@@ -2,7 +2,7 @@ import Catalog from '../../components/Catalog';
 
 import { MainPageContainer } from './MainPage.styles';
 
-const MainPage = () => {
+const MainPage: React.FC = () => {
   return (
     <MainPageContainer>
       <Catalog />

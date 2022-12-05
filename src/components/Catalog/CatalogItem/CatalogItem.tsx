@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { CatalogItemContainer } from './CatalogItem.styles';
 
@@ -15,8 +16,13 @@ const CatalogItem: React.FC<PropsType> = ({ pokemon }) => {
   const name = `${pokemon?.name.charAt(0).toUpperCase()}${pokemon?.name.slice(1)}`;
   useEffect(() => {
     (async () => {
-      const pokemonData = await pokemonApi.getOnePokemon(pokemon.url);
-      setPocemonInfo(pokemonData.data);
+      try {
+        const pokemonData = await pokemonApi.getOnePokemon(pokemon.url);
+        setPocemonInfo(pokemonData.data);
+      } catch (err) {
+        const error = err as Error;
+        return toast.error(error.message);
+      }
     })();
   }, [pokemon.url]);
 
